@@ -14,4 +14,4 @@ And so on.
 That's the goal of the application. To give you the possibility to choose the voice mail message according who is calling you.  
 
 ## Architecture
-![architecture](../img/ivoicemail.png, "architecture")
+![architecture](img/ivoicemail.png, "architecture")
