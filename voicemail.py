@@ -5,9 +5,10 @@ import json
 from flask import Flask, request, redirect
 
 app = Flask(__name__)
-owner_number = "yourNumber" # To replace
-owner_name = "yourName" # To replace
-contacts_uri = "contactsAPIUrl" # To replace
+app.config.from_pyfile('config.cfg')
+owner_number = app.config['OWNER_PHONE_NUMBER']
+owner_name = app.config['OWNER_NAME']
+contacts_uri = app.config['API_URL']
 
 @app.route("/", methods=['GET', 'POST'])
 def treatCall():
@@ -15,9 +16,8 @@ def treatCall():
     This method is the entry point for a caller.
     Generate TwiML according the incomming phone number.
     '''
-    # Get the caller's phone number from the incoming Twilio request
-
     resp = twilio.twiml.Response()
+    # Get the caller's phone number from the incoming Twilio request
     from_number = request.values.get('From', None)
     if from_number:
         # Need to get rid off spaces and international code because the API store numbers without those two.
